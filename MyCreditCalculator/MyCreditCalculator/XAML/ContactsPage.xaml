@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:MyCreditCalculator"
+             xmlns:local1="clr-namespace:MyCreditCalculator.CustomControls"
+             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+             x:Class="MyCreditCalculator.XAML.ContactsPage"
+             Title="Обратная связь"
+             Style="{StaticResource PageStyle}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="contactButtonStyle" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="Orange"/>
+                <Setter Property="CornerRadius" Value="3"/>
+                <Setter Property="Opacity" Value="1"/>
+            </Style>
+            <Style x:Key="frameDataStyle" TargetType="Frame">
+                <Setter Property="BorderColor" Value="#b0d0b0"/>
+                <Setter Property="BackgroundColor" Value="#f6f6f6"/>
+                <Setter Property="CornerRadius" Value="10"/>
+                <Setter Property="Padding" Value="5,0,1,0"/>
+                <Setter Property="HasShadow" Value="False" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Margin="5,5,5,5">
+                <Label Margin="10,0,0,0">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Напишите нам, если у Вас есть вопросы или предложения по улучшению работы приложения. Также Вы можете связаться с нами напрямую по адресу:"/>
+                            <Span Text="agstudiodev@gmail.com"
+                                  TextColor="Blue"
+                                  TextDecorations="Underline">
+                                <Span.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="MailToDev" NumberOfTapsRequired="1"/>
+                                </Span.GestureRecognizers>
+                            </Span>
+
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                    <Frame Style="{StaticResource frameDataStyle}">
+                        <local:MyEntry x:Name="nameEditor" Placeholder="Введите Ваше имя" Keyboard="Text"/>
+                    </Frame>
+                    <Frame Style="{StaticResource frameDataStyle}">
+                        <local:MyEntry x:Name="emailEditor" Placeholder="Введите Ваш e-mail" Keyboard="Email"/>
+                    </Frame>
+                    <Label Text="Ваше сообщение"/>
+                    <Frame Style="{StaticResource frameDataStyle}" 
+                       HeightRequest="200" WidthRequest="250" 
+                       MinimumWidthRequest="200" MinimumHeightRequest="150">
+                        <local1:MyEditor x:Name="messageEditor" BackgroundColor="Transparent"
+                            HeightRequest="200" WidthRequest="250" 
+                            MinimumWidthRequest="200" MinimumHeightRequest="150"/>
+                    </Frame>
+                    <Label x:Name="textError" TextColor="red"/>
+                </StackLayout>
+                <StackLayout>
+                    <Grid Margin="10,10,10,10" WidthRequest="450" HorizontalOptions="Center">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Button Grid.Column="0" Grid.Row="0" Text="Отправить"  
+                                android:Button.UseDefaultShadow="True"
+                            Clicked="OnSendMailClicked" Style="{StaticResource contactButtonStyle}"/>
+                        <Button Grid.Column="1" Grid.Row="0" Text="Отмена" 
+                                android:Button.UseDefaultShadow="True"
+                            Clicked="OnContactCloseClicked" Style="{StaticResource contactButtonStyle}"/>
+                    </Grid>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

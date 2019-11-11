@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:MyCreditCalculator"
+             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+             x:Class="MyCreditCalculator.XAML.AboutPage"
+             Title="О программе"
+             Style="{StaticResource PageStyle}">
+    <ContentPage.Content>
+        <StackLayout Margin="0,0,0,0" Padding="10,10,10,10">
+            <Label FontSize="Medium"
+                    Text="Приложение предназначено для быстрого расчета платежей* по банковскому кредиту. Возможно, предварительный расчет суммы платежей позволит кому-то определиться с требуемой суммой кредита, верно рассчитать свои силы."/>
+            <Label TextColor="Red" FontSize="Small"
+                    Text="*Расчет является ориентировочным и не включает в себя возможные комиссии и дополнительные платежи банка."/>
+            <Button Text="Назад"
+                    android:Button.UseDefaultShadow="True"
+                    VerticalOptions="EndAndExpand"
+                    HorizontalOptions="Center"
+                    Clicked="OnInfoCloseClicked"
+                    BackgroundColor="Orange"
+                    CornerRadius="3"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

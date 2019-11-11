@@ -1,0 +1,178 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:MyCreditCalculator"
+             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+             x:Class="MyCreditCalculator.XAML.CalculatorPage"
+             Title="Калькулятор кредитов"
+             Style="{StaticResource PageStyle}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="calcButtonStyle" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="DarkSeaGreen"/>
+                <Setter Property="BorderRadius" Value="7"/>
+                <Setter Property="WidthRequest" Value="250"/>
+                <Setter Property="MinimumWidthRequest" Value="100"/>
+                <Setter Property="Margin" Value="5,1,5,1"/>
+            </Style>
+            <Style x:Key="frameDataStyle" TargetType="Frame">
+                <Setter Property="BorderColor" Value="#b0d0b0"/>
+                <Setter Property="BackgroundColor" Value="#f6f6f6"/>
+                <Setter Property="CornerRadius" Value="10"/>
+                <Setter Property="Padding" Value="5,0,1,0"/>
+                <Setter Property="Margin" Value="0,0,0,0"/>
+                <Setter Property="HasShadow" Value="False" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ScrollView>
+        <StackLayout CompressedLayout.IsHeadless="True" 
+            Margin="0,0,0,0">
+            <Grid Margin="10,10,10,10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Image Grid.Column="0" Grid.Row="0"
+                    Source="{local:ImageResourceExtention MyCreditCalculator.Images.date.png }"/>
+                <Frame Grid.Column="1" Grid.Row="0" Style="{StaticResource frameDataStyle}">
+                    <DatePicker  x:Name="paymentDate" Format="D">
+                        <DatePicker.MinimumDate>01/01/2001</DatePicker.MinimumDate>
+                        <DatePicker.MaximumDate>01/01/2101</DatePicker.MaximumDate>
+                    </DatePicker>
+                </Frame>
+                <Image Grid.Column="0" Grid.Row="1"
+                    Source="{local:ImageResourceExtention MyCreditCalculator.Images.summ.png }"/>
+                <Frame Grid.Column="1" Grid.Row="1" Style="{StaticResource frameDataStyle}">
+                    <local:MyEntry x:Name="SumEditor" Placeholder="Сумма кредита" Keyboard="Numeric"/>
+                </Frame>
+                <Image Grid.Column="0" Grid.Row="2"
+                   Source="{local:ImageResourceExtention MyCreditCalculator.Images.term.png }"/>
+                <Frame Grid.Column="1" Grid.Row="2" Style="{StaticResource frameDataStyle}">
+                    <local:MyEntry x:Name="TermEditor" Placeholder="Срок кредита, мес" Keyboard="Numeric"/>
+                </Frame>
+                <Image Grid.Column="0" Grid.Row="3"
+                   Source="{local:ImageResourceExtention MyCreditCalculator.Images.percent.png }"/>
+                <Frame Grid.Column="1" Grid.Row="3" Style="{StaticResource frameDataStyle}">
+                    <local:MyEntry x:Name="PercentEditor" Placeholder="Процентная ставка" Keyboard="Numeric"/>
+                </Frame>
+                <Image Grid.Column="0" Grid.Row="4"
+                   Source="{local:ImageResourceExtention MyCreditCalculator.Images.payment.png }"/>
+                <Frame Grid.Column="1" Grid.Row="4" Style="{StaticResource frameDataStyle}">
+                    <FlexLayout Direction="Row" JustifyContent="SpaceBetween">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="20"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <local:MyPicker Grid.Column="0" Grid.Row="0"
+                                x:Name="picker"
+                                BackgroundColor="Transparent">
+                                <Picker.Items>
+                                    <x:String>Аннуитетный</x:String>
+                                    <x:String>Дифференцированный</x:String>
+                                </Picker.Items>
+                                <Picker.SelectedIndex>0</Picker.SelectedIndex>
+                            </local:MyPicker>
+                            <ImageButton Grid.Column="1" Grid.Row="0" Opacity=".4"
+                                Clicked="OnPickerOpen"
+                                BackgroundColor="Transparent"         
+                                Source="{local:ImageResourceExtention MyCreditCalculator.Images.down_open.png }">
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup>
+                                        <VisualState x:Name="Normal">
+                                            <VisualState.Setters>
+                                                <Setter Property="Scale" Value="1"/>
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                        <VisualState x:Name="Pressed">
+                                            <VisualState.Setters>
+                                                <Setter Property="Scale" Value="0.8"/>
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
+                            </ImageButton>
+                        </Grid>
+                        <ImageButton 
+                        Source="{local:ImageResourceExtention MyCreditCalculator.Images.help.png}"
+                        Margin="5"
+                        HorizontalOptions="EndAndExpand"
+                        Clicked="OnHelpClicked"
+                        BackgroundColor="Transparent"
+                        Opacity=".5">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup>
+                                    <VisualState x:Name="Normal">
+                                        <VisualState.Setters>
+                                            <Setter Property="Scale" Value="1"/>
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                    <VisualState x:Name="Pressed">
+                                        <VisualState.Setters>
+                                            <Setter Property="Scale" Value="0.8"/>
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                        </ImageButton>
+                    </FlexLayout>
+                </Frame>
+            </Grid>
+            <Button Text="Рассчитать" 
+                    android:Button.UseDefaultShadow="True"
+                    HorizontalOptions="Center"
+                    Clicked="OnCalculateClicked" Style="{StaticResource calcButtonStyle}"/>
+            <StackLayout Margin="10,10,10,10" CompressedLayout.IsHeadless="True">
+                <Label x:Name="monthlyPayment"  FontSize="Medium" TextColor="Black"/>
+                <Label x:Name="overPayment" FontSize="Medium" TextColor="Black"/>
+                <FlexLayout x:Name="sheduleSaveButtons" Direction="Row" JustifyContent="SpaceAround">
+                    <Button Text="График" x:Name="sheduleButton"
+                        android:Button.UseDefaultShadow="True" IsVisible="False"
+                        Clicked="OnScheduleOfPaymentsClicked" 
+                        Style="{StaticResource calcButtonStyle}"/>
+                    <Button Text="Сохранить" x:Name="saveButton" 
+                        android:Button.UseDefaultShadow="True" IsVisible="False"
+                         Clicked="OnSaveCreditClicked" 
+                        Style="{StaticResource calcButtonStyle}"/>
+                </FlexLayout>
+                <Frame x:Name="CreditNameFrame" Style="{StaticResource frameDataStyle}" IsVisible="False">
+                    <FlexLayout x:Name="CreditName" Direction="Row" JustifyContent="SpaceBetween">
+                        <local:MyEntry Placeholder="Название" x:Name="myCreditName" WidthRequest="300"/>
+                        <ImageButton 
+                        Source="{local:ImageResourceExtention MyCreditCalculator.Images.save.png}"
+                        x:Name="addCreditButton"
+                        Margin="5"
+                        Clicked="AddCreditClicked"
+                        BackgroundColor="Transparent">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup>
+                                    <VisualState x:Name="Normal">
+                                        <VisualState.Setters>
+                                            <Setter Property="Scale" Value="1"/>
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                    <VisualState x:Name="Pressed">
+                                        <VisualState.Setters>
+                                            <Setter Property="Scale" Value="0.8"/>
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                        </ImageButton>
+                    </FlexLayout>
+                </Frame>
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

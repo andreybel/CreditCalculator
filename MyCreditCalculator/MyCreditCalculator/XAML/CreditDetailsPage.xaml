@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:MyCreditCalculator"
+             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+             x:Class="MyCreditCalculator.XAML.CreditDetailsPage"
+             Title="Детали"
+             Style="{StaticResource PageStyle}">
+    <ContentPage.Content>
+        <StackLayout Margin="0,0,0,0" Padding="10,10,10,10">
+            <FlexLayout Direction="Row">
+                <Label Text="{Binding CreditName}" FontAttributes="Bold"/>
+            </FlexLayout>
+            <FlexLayout Direction="Row">
+                <Label Text="Дата первого платежа: "/>
+                <Label x:Name="cDate" Text="{Binding CreditDate}" FontAttributes="Bold"/>
+            </FlexLayout>
+            <FlexLayout Direction="Row">
+                <Label Text="Сумма: "/>
+                <Label x:Name="cSumm" Text="{Binding CreditSumm}" FontAttributes="Bold"/>
+            </FlexLayout>
+            <FlexLayout Direction="Row">
+                <Label Text="Срок кредита, мес: "/>
+                <Label x:Name="cTerm" Text="{Binding CreditTerm}" FontAttributes="Bold"/>
+            </FlexLayout>
+            <FlexLayout Direction="Row">
+                <Label Text="Процентная ставка, %: "/>
+                <Label x:Name="cPercent" Text="{Binding CreditPercent}" FontAttributes="Bold"/>
+            </FlexLayout>
+            <FlexLayout Direction="Row">
+                <Label Text="Тип платежа: "/>
+                <Label x:Name="cType" Text="{Binding PaymentsType}" FontAttributes="Bold"/>
+            </FlexLayout>
+            <FlexLayout Direction="Row">
+                <Label Text="Сумма всех платежей: "/>
+                <Label Text="{Binding TotalSumm, StringFormat=' {0:0.00}'}" FontAttributes="Bold"/>
+            </FlexLayout>
+            <FlexLayout Direction="Row">
+                <Label Text="Переплата по кредиту: "/>
+                <Label Text="{Binding OverPayment, StringFormat=' {0:0.00}'}" FontAttributes="Bold"/>
+            </FlexLayout>
+            <Button BackgroundColor="DarkSeaGreen" Text="График"
+                    WidthRequest="200"
+                    CornerRadius="7"
+                    Clicked="GetPaymentsShedule"
+                    android:Button.UseDefaultShadow="True"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

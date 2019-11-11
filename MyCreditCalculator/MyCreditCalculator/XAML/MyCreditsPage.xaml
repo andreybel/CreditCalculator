@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:MyCreditCalculator"
+             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+             x:Class="MyCreditCalculator.XAML.MyCreditsPage"
+             Title="Мои кредиты"
+             Style="{StaticResource PageStyle}">
+    <ContentPage.Content>
+        <StackLayout Margin="0,0,0,0" Padding="10,10,10,10">
+            <ListView x:Name="creditsList" ItemsSource="{Binding}" 
+                      ItemTapped="OnCreditSelected"
+                      IsPullToRefreshEnabled="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.ContextActions>
+                                <MenuItem Clicked="OnDeleteCredit" Text="Удалить"/>
+                            </ViewCell.ContextActions>
+                            <ViewCell.View>
+                                <StackLayout>
+                                    <Label Text="{Binding CreditName}" FontSize="Medium"
+                                           Margin="5,5,5,5"
+                                           VerticalOptions="Center"/>
+                                </StackLayout>
+                            </ViewCell.View>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

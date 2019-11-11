@@ -1,0 +1,79 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>pdbonly</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Images\add.png" />
+    <None Remove="Images\calculator.png" />
+    <None Remove="Images\date.png" />
+    <None Remove="Images\down.png" />
+    <None Remove="Images\down_open.png" />
+    <None Remove="Images\help.png" />
+    <None Remove="Images\icon.png" />
+    <None Remove="Images\menu.png" />
+    <None Remove="Images\payment.png" />
+    <None Remove="Images\percent.png" />
+    <None Remove="Images\save.png" />
+    <None Remove="Images\summ.png" />
+    <None Remove="Images\term.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Images\add.png" />
+    <EmbeddedResource Include="Images\calculator.png" />
+    <EmbeddedResource Include="Images\date.png" />
+    <EmbeddedResource Include="Images\down.png" />
+    <EmbeddedResource Include="Images\down_open.png" />
+    <EmbeddedResource Include="Images\help.png" />
+    <EmbeddedResource Include="Images\icon.png" />
+    <EmbeddedResource Include="Images\menu.png" />
+    <EmbeddedResource Include="Images\payment.png" />
+    <EmbeddedResource Include="Images\percent.png" />
+    <EmbeddedResource Include="Images\save.png" />
+    <EmbeddedResource Include="Images\summ.png" />
+    <EmbeddedResource Include="Images\term.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Realm" Version="3.4.0" />
+    <PackageReference Include="Xam.Plugins.Messaging" Version="5.2.0" />
+    <PackageReference Include="Xamarin.Forms" Version="3.6.0.293080" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="XAML\MyCreditsPage.xaml.cs">
+      <DependentUpon>MyCreditsPage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="XAML\AboutPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="XAML\CalculatorPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="XAML\ContactsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="XAML\CreditDetailsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="XAML\MasterPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="XAML\MyCreditsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="XAML\PaymentsTablePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+</Project>

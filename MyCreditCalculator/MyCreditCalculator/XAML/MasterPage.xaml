@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:MyCreditCalculator"
+             x:Class="MyCreditCalculator.XAML.MasterPage"
+             Title="Калькулятор кредитов"
+             Style="{StaticResource PageStyle}">
+    <ContentPage.Content>
+        <StackLayout>
+            <Grid BackgroundColor="#608c61" Padding="10,10,10,10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="40"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60"/>
+                </Grid.RowDefinitions>
+                <Image Grid.Column="0" Grid.Row="0"
+                    Source="{local:ImageResourceExtention MyCreditCalculator.Images.icon.png }"/>
+                <Label Grid.Column="1" Grid.Row="0" 
+                    Text="Калькулятор кредитов" 
+                       HorizontalOptions="Center" 
+                       VerticalOptions="Center" FontAttributes="Bold"
+                       TextColor="White"
+                       FontSize="Medium"/>
+            </Grid>
+            <StackLayout VerticalOptions="End">
+                <ListView x:Name="listView" x:FieldModifier="public">
+                    <ListView.ItemsSource>
+                        <x:Array Type="{x:Type local:MasterPageItem}">
+                            <local:MasterPageItem Title="Расчет" IconSource="calc.png" TargetType="{x:Type local:XAML.CalculatorPage}" />
+                            <local:MasterPageItem Title="Мои кредиты" IconSource="myCredits.png" TargetType="{x:Type local:XAML.MyCreditsPage}" />
+                            <local:MasterPageItem Title="О программе" IconSource="info.png" TargetType="{x:Type local:XAML.AboutPage}" />
+                            <local:MasterPageItem Title="Обратная связь" IconSource="email.png" TargetType="{x:Type local:XAML.ContactsPage}" />
+                            <local:MasterPageItem Title="Выход" IconSource="exit.png" TargetType="Button"/>
+                        </x:Array>
+                    </ListView.ItemsSource>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid Padding="5,10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="30"/>
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Image Source="{Binding IconSource}" />
+                                    <Label Grid.Column="1" Text="{Binding Title}" />
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
