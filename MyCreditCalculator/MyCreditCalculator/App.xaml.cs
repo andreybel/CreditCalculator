@@ -1,5 +1,8 @@
 ﻿using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace MyCreditCalculator
@@ -14,7 +17,8 @@ namespace MyCreditCalculator
 
         protected override void OnStart()
         {
-            // Handle when your app starts
+            AppCenter.Start("android=b6720286-51d7-4077-86b6-28afcf3f8090;",
+                  typeof(Analytics), typeof(Crashes));
         }
 
         protected override void OnSleep()   

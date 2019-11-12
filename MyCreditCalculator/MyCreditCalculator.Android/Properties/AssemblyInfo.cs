@@ -34,8 +34,8 @@ using Android.App;
 [assembly: UsesPermission(Android.Manifest.Permission.WriteExternalStorage)]
 
 
-#if RELEASE
-[assembly: Application(Debuggable = true)]
-#else
-[assembly: Application(Debuggable=false)]
-#endif
+//#if RELEASE
+//[assembly: Application(Debuggable = true)]
+//#else
+//[assembly: Application(Debuggable=false)]
+//#endif

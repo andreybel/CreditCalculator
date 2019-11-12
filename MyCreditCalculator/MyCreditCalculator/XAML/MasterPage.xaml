@@ -32,8 +32,9 @@
                             <local:MasterPageItem Title="Мои кредиты" IconSource="myCredits.png" TargetType="{x:Type local:XAML.MyCreditsPage}" />
                             <local:MasterPageItem Title="О программе" IconSource="info.png" TargetType="{x:Type local:XAML.AboutPage}" />
                             <local:MasterPageItem Title="Обратная связь" IconSource="email.png" TargetType="{x:Type local:XAML.ContactsPage}" />
-                            <local:MasterPageItem Title="Выход" IconSource="exit.png" TargetType="Button"/>
+                            <!--<local:MasterPageItem Title="Выход" IconSource="exit.png" TargetType="Button"/>-->
                         </x:Array>
+                     
                     </ListView.ItemsSource>
                     <ListView.ItemTemplate>
                         <DataTemplate>
