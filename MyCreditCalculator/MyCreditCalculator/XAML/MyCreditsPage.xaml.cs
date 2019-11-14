@@ -1,6 +1,5 @@
 ﻿using MyCreditCalculator.Interfaces;
 using MyCreditCalculator.Models;
-using Realms;
 using System;
 using System.Linq;
 using Xamarin.Forms;
@@ -16,11 +15,10 @@ namespace MyCreditCalculator.XAML
 			InitializeComponent ();
 		}
         // show all credits
-        protected override void OnAppearing()
+        protected override async void OnAppearing()
         {
-            var config = new RealmConfiguration() { SchemaVersion = 2};
-            Realm creditDB = Realm.GetInstance(config);
-            creditsList.ItemsSource = creditDB.All<MyCredit>().ToList();
+            ((App)App.Current).ResumeAtTodoId = -1;
+            creditsList.ItemsSource = await App.Database.GetItemsAsync();
             base.OnAppearing();
         }
         /// <summary>
@@ -48,15 +46,10 @@ namespace MyCreditCalculator.XAML
             bool result = await DisplayAlert("","Точно удалить?","Да","Нет");
             if (result)
             {
-                var config = new RealmConfiguration() { SchemaVersion = 2 };
-                Realm creditDB = Realm.GetInstance(config);
                 var removeCredit = (sender as BindableObject).BindingContext as MyCredit;
-                using (var db = creditDB.BeginWrite()) {
-                    creditDB.Remove(removeCredit);
-                    db.Commit();
-                };
+                await App.database.DeleteItemAsync(removeCredit);
                 DependencyService.Get<IToastMessage>().ShowMesssage("Кредит удален");
-                creditsList.ItemsSource = creditDB.All<MyCredit>().ToList();
+                creditsList.ItemsSource = await App.database.GetItemsAsync();
             }
         }
     }

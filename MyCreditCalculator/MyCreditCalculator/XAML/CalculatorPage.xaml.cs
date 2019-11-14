@@ -6,7 +6,6 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using MyCreditCalculator.Interfaces;
 using MyCreditCalculator.Models;
-using Realms;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -256,26 +255,18 @@ namespace MyCreditCalculator.XAML
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void AddCreditClicked(object sender, EventArgs e)
+        private async void AddCreditClicked(object sender, EventArgs e)
         {
-            Realm creditsDB;
-            var maxId = 0;
             try
             {
-                var config = new RealmConfiguration() { SchemaVersion = 2 };
-                creditsDB = Realm.GetInstance(config);
-                var credits = creditsDB.All<MyCredit>().ToList();
                 if(String.IsNullOrEmpty(myCreditName.Text))
                 {
                     DependencyService.Get<IToastMessage>().ShowMesssage("Введите пожалуйста название кредита");
                 }
                 else
                 {
-                    if (credits.Count() != 0)
-                        maxId = credits.Max(c => c.Id);
                     MyCredit myCredit = new MyCredit
                     {
-                        Id = maxId + 1,
                         CreditName = myCreditName.Text,
                         CreditDate = paymentDate.Date.ToString(),
                         CreditSumm = (double)crSumm,
@@ -285,17 +276,14 @@ namespace MyCreditCalculator.XAML
                         TotalSumm = (double)totalCreditSumm,
                         OverPayment = (double)overPaymentCredit
                     };
-                    creditsDB.Write(() =>
-                    {
-                        creditsDB.Add(myCredit);
-                    });
+                    await App.Database.SaveItemAsync(myCredit);
                     DependencyService.Get<IToastMessage>().ShowMesssage("Кредит добавлен!");
-                    Navigation.PushModalAsync(new MainPage());
+                    await Navigation.PushModalAsync(new MainPage());
                 }
             }
             catch (Exception ex)
             {
-                DisplayAlert("", ex.Message, "OK");
+                await DisplayAlert("", ex.Message, "OK");
             }
             
         }

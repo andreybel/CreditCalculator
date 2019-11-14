@@ -1,7 +1,6 @@
 ﻿using MyCreditCalculator.Models;
 using System;
 using System.Collections.Generic;
-using Realms;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using System.Linq;

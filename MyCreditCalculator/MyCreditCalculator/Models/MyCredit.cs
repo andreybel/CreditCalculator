@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Realms;
+using SQLite;
 
 namespace MyCreditCalculator.Models
 {
-    public class MyCredit:RealmObject
+    
+    public class MyCredit
     {
-        [PrimaryKey]
+        [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
 
         public string CreditDate { get; set; }

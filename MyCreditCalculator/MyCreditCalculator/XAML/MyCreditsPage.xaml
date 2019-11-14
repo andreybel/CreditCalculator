@@ -10,6 +10,7 @@
         <StackLayout Margin="0,0,0,0" Padding="10,10,10,10">
             <ListView x:Name="creditsList" ItemsSource="{Binding}" 
                       ItemTapped="OnCreditSelected"
+                      SelectionMode="None"
                       IsPullToRefreshEnabled="True">
                 <ListView.ItemTemplate>
                     <DataTemplate>
