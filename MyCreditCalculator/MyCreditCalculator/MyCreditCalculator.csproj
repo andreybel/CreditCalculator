@@ -50,7 +50,7 @@
     <PackageReference Include="Microsoft.AppCenter.Crashes" Version="2.6.1" />
     <PackageReference Include="Realm" Version="3.4.0" />
     <PackageReference Include="Xam.Plugins.Messaging" Version="5.2.0" />
-    <PackageReference Include="Xamarin.Forms" Version="4.3.0.947036" />
+    <PackageReference Include="Xamarin.Forms" Version="4.3.0.991211" />
   </ItemGroup>
 
   <ItemGroup>
