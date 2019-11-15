@@ -60,7 +60,7 @@ namespace MyCreditCalculator.XAML
                     mail.Priority = MailPriority.High;
 
                     SmtpServer.Port = 587;
-                    SmtpServer.Credentials = new NetworkCredential(myEMail, "$mondeo2005");
+                    SmtpServer.Credentials = new NetworkCredential(myEMail, "***********");
                     SmtpServer.EnableSsl = true;
                     SmtpServer.UseDefaultCredentials = false;
                     ServicePointManager.ServerCertificateValidationCallback = delegate (object sender, X509Certificate certificate, X509Chain chain, System.Net.Security.SslPolicyErrors sslPolicyErrors)
